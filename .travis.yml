@@ -43,6 +43,9 @@ jobs:
         skip_cleanup: true
     - stage: deploy
       language: java
+      before_script:
+        - chmod +x databases/create_databases.sql
+        - chmod +x gradlew
       script:
         - chmod +x gradlew
         - chmod +x databases/create_databases.sql
@@ -62,7 +65,12 @@ jobs:
         space: review
     - stage: deploy
       language: bash
+      before_script:
+        - chmod +x databases/create_databases.sql
+        - chmod +x gradlew
       script:
+        - chmod +x databases/create_databases.sql
+        - chmod +x gradlew
         - echo "Downloading backlog server $RELEASE_TAG"
         - wget -P applications/backlog-server/build/libs https://github.com/$GITHUB_USERNAME/pal-tracker-distributed/releases/download/$RELEASE_TAG/backlog-server.jar
       before_deploy:
