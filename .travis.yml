@@ -19,10 +19,16 @@ jobs:
         mariadb: '10.2'
       install: skip
       before_script:
+        - chmod +x databases/create_databases.sql
+        - chmod +x gradlew
         - mysql -uroot < databases/create_databases.sql
         - ./gradlew testMigrate
-      script: ./gradlew clean build
+      script:
+        - chmod +x gradlew
+        - ./gradlew clean build
       before_deploy:
+        - chmod +x gradlew
+        - chmod +x databases/create_databases.sql
         - git config --local user.name "Travis CI"
         - git config --local user.email "travis@example.com"
         - git tag -f $RELEASE_TAG
@@ -38,9 +44,13 @@ jobs:
     - stage: deploy
       language: java
       script:
+        - chmod +x gradlew
+        - chmod +x databases/create_databases.sql
         - echo "Downloading allocations server $RELEASE_TAG"
         - wget -P applications/allocations-server/build/libs https://github.com/$GITHUB_USERNAME/pal-tracker-distributed/releases/download/$RELEASE_TAG/allocations-server.jar
       before_deploy:
+        - chmod +x gradlew
+        - chmod +x databases/create_databases.sql
         - cp manifest-allocations.yml manifest.yml
         - echo "Deploying allocations server $RELEASE_TAG"
       deploy: &cloudfoundry
@@ -56,6 +66,8 @@ jobs:
         - echo "Downloading backlog server $RELEASE_TAG"
         - wget -P applications/backlog-server/build/libs https://github.com/$GITHUB_USERNAME/pal-tracker-distributed/releases/download/$RELEASE_TAG/backlog-server.jar
       before_deploy:
+        - chmod +x gradlew
+        - chmod +x databases/create_databases.sql
         - cp manifest-backlog.yml manifest.yml
         - echo "Deploying backlog server $RELEASE_TAG"
       deploy:
