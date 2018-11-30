@@ -2,14 +2,21 @@ import io.pivotal.pal.tracker.gradlebuild.DependenciesGraphPlugin
 
 buildscript {
     ext {
-        springCloudVersion = "Finchley.SR2"
-        //springCloudServicesVersion = "2.0.2-build.3"
-        springCloudServicesVersion = "2.0.3.RELEASE"
-
-        //springBootVersion = "1.5.7.RELEASE"
         springBootVersion = "2.0.6.RELEASE"
-        springVersion = "4.3.8.RELEASE"
-        mysqlVersion = "6.0.6"
+        springVersion = "5.0.9.RELEASE"
+        mysqlVersion = "8.0.13"
+        jacksonVersion = "2.9.7"
+        slf4jVersion = "1.7.25"
+        mockitoVersion = "2.23.0"
+        assertJVersion = "3.11.1"
+        hikariVersion = "3.1.0"
+        logbackVersion = "1.2.3"
+        junitVersion = "4.12"
+        okhttpVersion = "3.12.0"
+        jsonPathVersion = "2.4.0"
+        springCloudVersion = "Finchley.SR2"
+        springCloudServicesClientLibrariesVersion = "2.0.2.RELEASE"
+        springCloudCommonsVersion = "2.0.0.RELEASE"
     }
 
     repositories {
@@ -37,13 +44,19 @@ subprojects {
     }
 
     dependencies {
-        compile "com.fasterxml.jackson.core:jackson-core:2.9.4"
-        compile "com.fasterxml.jackson.core:jackson-databind:2.9.4"
-        compile "com.fasterxml.jackson.core:jackson-annotations:2.9.4"
-        compile "org.slf4j:slf4j-api:1.7.10"
+        compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+        compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+        compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+        compile "org.slf4j:slf4j-api:$slf4jVersion"
 
-        testCompile "junit:junit:4.12"
-        testCompile "org.mockito:mockito-core:2.2.26"
-        testCompile "org.assertj:assertj-core:3.8.0"
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.mockito:mockito-core:$mockitoVersion"
+        testCompile "org.assertj:assertj-core:$assertJVersion"
+    }
+
+    test {
+        testLogging {
+            exceptionFormat = 'full'
+        }
     }
 }
