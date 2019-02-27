@@ -84,6 +84,7 @@ jobs:
 
             cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s sandbox
             cf push -f manifest-allocations.yml
+            chmod +x ./migrate-databases.sh
             bash ./migrate-databases.sh tracker-allocations /tmp/extracted-archive/migrations /root/project
 
   deployBacklog:
@@ -124,6 +125,7 @@ jobs:
 
             cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s sandbox
             cf push -f manifest-backlog.yml
+            chmod +x ./migrate-databases.sh
             bash ./migrate-databases.sh tracker-backlog /tmp/extracted-archive/migrations /root/project
 
   deployRegistration:
@@ -164,6 +166,7 @@ jobs:
 
             cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s sandbox
             cf push -f manifest-registration.yml
+            chmod +x ./migrate-databases.sh
             bash ./migrate-databases.sh tracker-registration /tmp/extracted-archive/migrations /root/project
 
   deployTimesheets:
@@ -204,6 +207,7 @@ jobs:
 
             cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s sandbox
             cf push -f manifest-timesheets.yml
+            chmod +x ./migrate-databases.sh
             bash ./migrate-databases.sh tracker-timesheets /tmp/extracted-archive/migrations /root/project
 
 
