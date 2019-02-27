@@ -4,9 +4,9 @@ applications:
   instances: 1
   memory: 256M
   routes:
-  - route: allocations-pal-dj.cfapps.io
+  - route: allocations-pal-djyk123.cfapps.io
   path: Applications/AllocationsServer/bin/Release/netcoreapp2.1/publish
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-dj.cfapps.io
+    REGISTRATION_SERVER_ENDPOINT: http://registration-pal-djyk123.cfapps.io
   services:
   - tracker-allocations-database
