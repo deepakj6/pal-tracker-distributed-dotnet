@@ -7,8 +7,7 @@ DROP DATABASE IF EXISTS tracker_backlog_dotnet_test;
 DROP DATABASE IF EXISTS tracker_registration_dotnet_test;
 DROP DATABASE IF EXISTS tracker_timesheets_dotnet_test;
 
-CREATE USER IF NOT EXISTS 'tracker_dotnet'@'localhost'
-  IDENTIFIED BY 'password';
+CREATE USER IF NOT EXISTS 'tracker_dotnet'@'localhost'  IDENTIFIED BY 'password';
 
 GRANT ALL PRIVILEGES ON *.* TO 'tracker_dotnet' @'localhost';
 
